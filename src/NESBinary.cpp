@@ -38,9 +38,9 @@ bool NESBinary::Read()
 
     /// Header Flags: Byte 6/15
     auto flagsByteSix = header[6];
-    headerFlags.verticalMirror = ReadBit(flagsByteSix, 0);
-    headerFlags.hasPersistentMemory = ReadBit(flagsByteSix, 1);
-    headerFlags.hasTrainer = ReadBit(flagsByteSix, 2);
+    headerFlags.verticalMirror = BitOperations::ReadBit(flagsByteSix, 0);
+    headerFlags.hasPersistentMemory = BitOperations::ReadBit(flagsByteSix, 1);
+    headerFlags.hasTrainer = BitOperations::ReadBit(flagsByteSix, 2);
 
     /// End interpret header values
 
@@ -57,9 +57,4 @@ NESBinary::~NESBinary()
     delete[] playChoiceINSTROM;
     delete[] playChoicePROM;
     delete[] optionalTitle;
-}
-
-inline bool NESBinary::ReadBit(unsigned char byte, int bit)
-{
-    return (byte >> bit) & 1;
 }

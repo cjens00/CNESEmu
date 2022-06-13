@@ -5,8 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include "BitOperations.h"
 
-struct Flags_6;
 enum NESBinaryFormat
 {
     iNES = 0,
@@ -53,8 +53,6 @@ public:
     ~NESBinary();
 
     bool Read();
-
-    static inline bool ReadBit(unsigned char byte, int bit);
 };
 
 /// iNES Header, Flags 6:
