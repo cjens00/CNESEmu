@@ -1,0 +1,21 @@
+76543210
+||||||||
+|||||||+- Mirroring: 0: horizontal (vertical arrangement) (CIRAM A10 = PPU A11)
+|||||||              1: vertical (horizontal arrangement) (CIRAM A10 = PPU A10)
+||||||+-- 1: Cartridge contains battery-backed PRG RAM ($6000-7FFF) or other persistent memory
+|||||+--- 1: 512-byte trainer at $7000-$71FF (stored before PRG data)
+||||+---- 1: Ignore mirroring control or above mirroring bit; instead provide four-screen VRAM
+++++----- Lower nybble of mapper number
+
+Byte 6/15 Flags:
+
+0: Mirroring: 
+	- 0: horizontal (vertical arrangement) (CIRAM A10 = PPU A11)
+	- 1: vertical (horizontal arrangement) (CIRAM A10 = PPU A10)
+1: 
+2: 
+3: 
+4: 
+5: 
+6: 
+7: 
