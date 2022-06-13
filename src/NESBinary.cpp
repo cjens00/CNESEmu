@@ -35,15 +35,24 @@ bool NESBinary::Read()
     szCHRROM = header[5];
     if (szCHRROM > 0) CHRROM = new unsigned char[8192 * szCHRROM];
     else headerFlags.usesCHRRAM = true;
-
     /// Header Flags: Byte 6/15
     auto flagsByteSix = header[6];
     headerFlags.verticalMirror = BitOperations::ReadBit(flagsByteSix, 0);
     headerFlags.hasPersistentMemory = BitOperations::ReadBit(flagsByteSix, 1);
     headerFlags.hasTrainer = BitOperations::ReadBit(flagsByteSix, 2);
-
     /// End interpret header values
 
+    if (headerFlags.hasTrainer)
+    {
+        trainer = new unsigned char[512];
+        file.read(reinterpret_cast<char *>(trainer), 512);
+    }
+    file.read(reinterpret_cast<char *>(PRGROM), 16384*szPRGROM);
+    if (!headerFlags.usesCHRRAM)
+    {
+        file.read(reinterpret_cast<char *>(CHRROM), 8192*szCHRROM);
+    }
+    std::cout << "Cursor at pos " << file.tellg() << "\r\n";
     std::cout << "debug\r\n";
     return true;
 }
