@@ -28,15 +28,15 @@ class NESBinary
     NESBinaryFormat format;
 
     /// iNES header (Big thanks to https://nesdev.org/wiki/INES):
-    /// 0-3: Constant $4E $45 $53 $1A ("NES" followed by MS-DOS end-of-file)
-    /// 4: Size of PRG ROM in 16 KB units
-    /// 5: Size of CHR ROM in 8 KB units (Value 0 means the board uses CHR RAM)
-    /// 6: Flags 6 - Mapper, mirroring, battery, trainer
-    /// 7: Flags 7 - Mapper, VS/PlayChoice, NES 2.0
-    /// 8: Flags 8 - PRG-RAM size (rarely used extension)
-    /// 9: Flags 9 - TV system (rarely used extension)
-    /// 10: Flags 10 - TV system, PRG-RAM presence (unofficial, rarely used extension)
-    /// 11-15: Unused padding (should be filled with zero, but some rippers put their name across bytes 7-15)
+    /// <br>0-3: Constant $4E $45 $53 $1A ("NES" followed by MS-DOS end-of-file)
+    /// <br>4: Size of PRG ROM in 16 KB units
+    /// <br>5: Size of CHR ROM in 8 KB units (Value 0 means the board uses CHR RAM)
+    /// <br>6: Flags 6 - Mapper, mirroring, battery, trainer
+    /// <br>7: Flags 7 - Mapper, VS/PlayChoice, NES 2.0
+    /// <br>8: Flags 8 - PRG-RAM size (rarely used extension)
+    /// <br>9: Flags 9 - TV system (rarely used extension)
+    /// <br>10: Flags 10 - TV system, PRG-RAM presence (unofficial, rarely used extension)
+    /// <br>11-15: Unused padding (should be filled with zero, but some rippers put their name across bytes 7-15)
     unsigned char *header; // 16 bytes
     unsigned char *trainer; // 0-512 bytes
     unsigned char *PRGROM; // 16384*x bytes
@@ -56,14 +56,14 @@ public:
 };
 
 /// iNES Header, Flags 6:
-/// 0: 	Mirroring:
-/// 		- 0: horizontal (vertical arrangement) (CIRAM A10 = PPU A11)
-/// 		- 1: vertical (horizontal arrangement) (CIRAM A10 = PPU A10)
-/// 1: 	1: Cartridge contains battery-backed PRG RAM ($6000-7FFF) or other persistent memory
-/// 2: 	1: 512-byte trainer at $7000-$71FF (stored before PRG data)
-/// 3: 	1: Ignore mirroring control or above mirroring bit; instead provide four-screen VRAM
-/// 4: 	Lower nybble of mapper number
-/// 5: 	Lower nybble of mapper number
-/// 6: 	Lower nybble of mapper number
-/// 7: 	Lower nybble of mapper number
+/// <br>0: 	Mirroring:
+/// <br>---- 0: horizontal (vertical arrangement) (CIRAM A10 = PPU A11)</li>
+/// <br>---- 1: vertical (horizontal arrangement) (CIRAM A10 = PPU A10)</li>
+/// <br>1: 	1: Cartridge contains battery-backed PRG RAM ($6000-7FFF) or other persistent memory
+/// <br>2: 	1: 512-byte trainer at $7000-$71FF (stored before PRG data)
+/// <br>3: 	1: Ignore mirroring control or above mirroring bit; instead provide four-screen VRAM
+/// <br>4: 	Lower nybble of mapper number
+/// <br>5: 	Lower nybble of mapper number
+/// <br>6: 	Lower nybble of mapper number
+/// <br>7: 	Lower nybble of mapper number
 
