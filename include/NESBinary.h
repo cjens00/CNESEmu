@@ -14,6 +14,7 @@ enum NESBinaryFormat
 class NESBinary
 {
     std::string filePath;
+    uint64_t fileSize;
     NESBinaryFormat format;
 
     /// iNES header (Big thanks to https://nesdev.org/wiki/INES):
