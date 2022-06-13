@@ -15,7 +15,8 @@ add_executable(Cams_NES_Emulator
         src/NESAPU.cpp src/ROMLoader.cpp
 
         include/NESCPU.h include/NESMemory.h include/NESPPU.h
-        include/NESAPU.h include/ROMLoader.h src/ServiceSDL.cpp src/ServiceSDL.h src/NESBinary.cpp src/NESBinary.h)
+        include/NESAPU.h include/ROMLoader.h src/ServiceSDL.cpp
+        include/ServiceSDL.h src/NESBinary.cpp include/NESBinary.h)
 target_include_directories(Cams_NES_Emulator PRIVATE include external)
 target_link_libraries(Cams_NES_Emulator PRIVATE
         ../external/sdl/lib/static/SDL2-staticd

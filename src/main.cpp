@@ -4,6 +4,7 @@
 /// #include <signal.h>
 //#endif
 #include "sdl/include/SDL.h"
+#include "NESBinary.h"
 #include <iostream>
 
 int TestSDL()
@@ -55,7 +56,6 @@ int TestSDL()
         return 1;
     }
     SDL_Event sdl_event;
-    //A sleepy rendering loop, wait for 3 seconds and render and present the screen each time
     for (int i = 0; i < 1000; ++i)
     {
         //First clear the renderer
@@ -65,10 +65,6 @@ int TestSDL()
         //Update the screen
         SDL_RenderPresent(sdl_renderer.get());
         SDL_PollEvent(&sdl_event);
-        switch(sdl_event.type)
-        {
-            case SDL_WINDOW
-        }
 
         //Take a quick break after all that hard work
         SDL_Delay(30);
@@ -80,6 +76,8 @@ int TestSDL()
 
 int main(int argc, char *argv[])
 {
+    NESBinary bin("../test/smb-test.nes");
+    bin.Read();
     int rv = TestSDL();
     return 0;
 }

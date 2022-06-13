@@ -2,19 +2,29 @@
 
 #include <cstdint>
 #include <string>
+#include <iostream>
 #include <fstream>
 #include <filesystem>
 
+struct Flags_6;
 enum NESBinaryFormat
 {
     iNES = 0,
     NES20 = 1
 };
 
+struct HeaderFlags
+{
+    bool verticalMirror;
+    bool hasPersistentMemory;
+    bool hasTrainer;
+    bool usesCHRRAM;
+};
+
 class NESBinary
 {
     std::string filePath;
-    uint64_t fileSize;
+    unsigned long int fileSize;
     NESBinaryFormat format;
 
     /// iNES header (Big thanks to https://nesdev.org/wiki/INES):
@@ -27,18 +37,24 @@ class NESBinary
     /// 9: Flags 9 - TV system (rarely used extension)
     /// 10: Flags 10 - TV system, PRG-RAM presence (unofficial, rarely used extension)
     /// 11-15: Unused padding (should be filled with zero, but some rippers put their name across bytes 7-15)
-    uint8_t *header; // 16 bytes
-
-    uint8_t *trainer; // 0-512 bytes
-    uint8_t *PRGROM; // 16384 * x bytes
-    uint8_t *CHRROM; // 8192 * y bytes
-    uint8_t *PlayChoiceINSTROM; // 0 || 8192 bytes
-    uint8_t *PlayChoicePROM; // 16 bytes Data, 16 bytes CounterOut
-    char8_t *optionalTitle; // 0-128 bytes
+    unsigned char *header; // 16 bytes
+    unsigned char *trainer; // 0-512 bytes
+    unsigned char *PRGROM; // 16384*x bytes
+    unsigned int szPRGROM;
+    unsigned char *CHRROM; // 8192*y bytes
+    unsigned int szCHRROM;
+    unsigned char *playChoiceINSTROM; // 0 || 8192 bytes
+    unsigned char *playChoicePROM; // 16 bytes Data, 16 bytes CounterOut
+    unsigned char *optionalTitle; // 0-128 bytes
+    struct HeaderFlags headerFlags;
 public:
     explicit NESBinary(const std::string &pathToBinary);
 
+    ~NESBinary();
+
     bool Read();
+
+    static inline bool ReadBit(unsigned char byte, int bit);
 };
 
 /// iNES Header, Flags 6:
@@ -52,3 +68,4 @@ public:
 /// 5: 	Lower nybble of mapper number
 /// 6: 	Lower nybble of mapper number
 /// 7: 	Lower nybble of mapper number
+
