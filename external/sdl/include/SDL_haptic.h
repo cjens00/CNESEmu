@@ -300,9 +300,9 @@ typedef struct _SDL_Haptic SDL_Haptic;
 #define SDL_HAPTIC_STATUS     (1u<<14)
 
 /**
- *  \brief Device can be paused.
+ *  \brief Device can be isPaused.
  *
- *  Devices supports being paused.
+ *  Devices supports being isPaused.
  *
  *  \sa SDL_HapticPause
  *  \sa SDL_HapticUnpause
@@ -1227,7 +1227,7 @@ extern DECLSPEC int SDLCALL SDL_HapticSetAutocenter(SDL_Haptic * haptic,
  * Device must support the `SDL_HAPTIC_PAUSE` feature. Call
  * SDL_HapticUnpause() to resume playback.
  *
- * Do not modify the effects nor add new ones while the device is paused. That
+ * Do not modify the effects nor add new ones while the device is isPaused. That
  * can cause all sorts of weird errors.
  *
  * \param haptic the SDL_Haptic device to pause

@@ -536,7 +536,7 @@ extern DECLSPEC int SDLCALL SDL_GetAudioDeviceSpec(int index,
  * hostname/IP address for a remote audio server, or a filename in the
  * diskaudio driver.
  *
- * An opened audio device starts out paused, and should be enabled for playing
+ * An opened audio device starts out isPaused, and should be enabled for playing
  * by calling SDL_PauseAudioDevice(devid, 0) when you are ready for your audio
  * callback function to be called. Since the audio driver may modify the
  * requested size of the audio buffer, you should allocate any local mixing
@@ -721,11 +721,11 @@ extern DECLSPEC void SDLCALL SDL_PauseAudio(int pause_on);
  * device.
  *
  * This function pauses and unpauses the audio callback processing for a given
- * device. Newly-opened audio devices start in the paused state, so you must
+ * device. Newly-opened audio devices start in the isPaused state, so you must
  * call this function with **pause_on**=0 after opening the specified audio
  * device to start playing sound. This allows you to safely initialize data
  * for your callback function after opening the audio device. Silence will be
- * written to the audio device while paused, and the audio callback is
+ * written to the audio device while isPaused, and the audio callback is
  * guaranteed to not be called. Pausing one device does not prevent other
  * unpaused devices from running their callbacks.
  *
@@ -1208,12 +1208,12 @@ extern DECLSPEC int SDLCALL SDL_QueueAudio(SDL_AudioDeviceID dev, const void *da
  * necessary without further intervention from you. This means you will
  * eventually run out of memory if you aren't routinely dequeueing data.
  *
- * Capture devices will not queue data when paused; if you are expecting to
+ * Capture devices will not queue data when isPaused; if you are expecting to
  * not need captured audio for some length of time, use SDL_PauseAudioDevice()
  * to stop the capture device from queueing more data. This can be useful
  * during, say, level loading times. When unpaused, capture devices will start
  * queueing data from that point, having flushed any capturable data available
- * while paused.
+ * while isPaused.
  *
  * This function is thread-safe, but dequeueing from the same device from two
  * threads at once does not promise which thread will dequeue data first.
@@ -1278,7 +1278,7 @@ extern DECLSPEC Uint32 SDLCALL SDL_GetQueuedAudioSize(SDL_AudioDeviceID dev);
  * Immediately after this call, SDL_GetQueuedAudioSize() will return 0. For
  * output devices, the hardware will start playing silence if more audio isn't
  * queued. For capture devices, the hardware will start filling the empty
- * queue with new data if the capture device isn't paused.
+ * queue with new data if the capture device isn't isPaused.
  *
  * This will not prevent playback of queued audio that's already been sent to
  * the hardware, as we can not undo that, so expect there to be some fraction
@@ -1345,7 +1345,7 @@ extern DECLSPEC void SDLCALL SDL_LockAudio(void);
  * function specified in SDL_OpenAudioDevice(). During a
  * SDL_LockAudioDevice()/SDL_UnlockAudioDevice() pair, you can be guaranteed
  * that the callback function for that device is not running, even if the
- * device is not paused. While a device is locked, any other unpaused,
+ * device is not isPaused. While a device is locked, any other unpaused,
  * unlocked devices may still run their callbacks.
  *
  * Calling this function from inside your audio callback is unnecessary. SDL

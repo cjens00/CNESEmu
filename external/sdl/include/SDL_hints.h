@@ -106,7 +106,7 @@ extern "C" {
 #define SDL_HINT_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION "SDL_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION"
 
 /**
- * \brief A variable to control whether the event loop will block itself when the app is paused.
+ * \brief A variable to control whether the event loop will block itself when the app is isPaused.
  *
  * The variable can be set to the following values:
  *   "0"       - Non blocking.
@@ -121,7 +121,7 @@ extern "C" {
  *        (Requires SDL_ANDROID_BLOCK_ON_PAUSE as "Non blocking")
  *
  * The variable can be set to the following values:
- *   "0"       - Non paused.
+ *   "0"       - Non isPaused.
  *   "1"       - Paused. (default)
  *
  * The value should be set before SDL is initialized.

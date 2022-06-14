@@ -344,7 +344,7 @@ extern DECLSPEC int SDLCALL SDL_SetThreadPriority(SDL_ThreadPriority priority);
  * afterward.
  *
  * \param thread the SDL_Thread pointer that was returned from the
- *               SDL_CreateThread() call that started this thread
+ *               SDL_CreateThread() call that isStarted this thread
  * \param status pointer to an integer that will receive the value returned
  *               from the thread function by its 'return', or NULL to not
  *               receive such value back.
@@ -383,7 +383,7 @@ extern DECLSPEC void SDLCALL SDL_WaitThread(SDL_Thread * thread, int *status);
  * It is safe to pass NULL to this function; it is a no-op.
  *
  * \param thread the SDL_Thread pointer that was returned from the
- *               SDL_CreateThread() call that started this thread
+ *               SDL_CreateThread() call that isStarted this thread
  *
  * \since This function is available since SDL 2.0.2.
  *
