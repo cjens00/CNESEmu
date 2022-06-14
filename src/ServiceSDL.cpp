@@ -1,15 +1,16 @@
 #include "ServiceSDL.h"
 
-ServiceSDL::ServiceSDL() :
-        window(nullptr, nullptr), renderer(nullptr, nullptr)
-{
-}
+ServiceSDL::ServiceSDL() : window(nullptr, nullptr), renderer(nullptr, nullptr)
+{}
+
+ServiceSDL::~ServiceSDL()
+{ SDL_Quit(); }
 
 bool ServiceSDL::InitializeSDL()
 {
-    if(!SDLInit()) return false;
-    if(!SDLInitWindow()) return false;
-    if(!SDLInitRenderer()) return false;
+    if (!SDLInit()) return false;
+    if (!SDLInitWindow()) return false;
+    if (!SDLInitRenderer()) return false;
     return true;
 }
 

@@ -27,6 +27,7 @@ class ServiceSDL
     SDLRendererPtrUnq renderer;
 public:
     ServiceSDL();
+    ~ServiceSDL();
 
     bool InitializeSDL();
 
