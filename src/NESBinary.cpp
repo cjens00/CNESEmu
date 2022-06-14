@@ -1,5 +1,20 @@
 #include "NESBinary.h"
 
+NESBinary::NESBinary()
+{
+    filePath = "";
+    format = NESBinaryFormat::iNES;
+    fileSize = 0;
+    header = nullptr;
+    trainer = nullptr;
+    PRGROM = nullptr;
+    CHRROM = nullptr;
+    playChoiceINSTROM = nullptr;
+    playChoicePROM = nullptr;
+    optionalTitle = nullptr;
+    headerFlags = {};
+}
+
 NESBinary::NESBinary(const std::string &pathToBinary)
 {
     filePath = pathToBinary;

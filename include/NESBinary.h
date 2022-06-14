@@ -48,6 +48,7 @@ class NESBinary
     unsigned char *optionalTitle; // 0-128 bytes
     struct HeaderFlags headerFlags;
 public:
+    NESBinary();
     explicit NESBinary(const std::string &pathToBinary);
 
     ~NESBinary();

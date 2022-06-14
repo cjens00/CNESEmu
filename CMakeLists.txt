@@ -11,13 +11,15 @@ endif ()
 #/NODEFAULTLIB:msvcrtd,msvcrt
 add_executable(Cams_NES_Emulator
         src/main.cpp
-        src/NESCPU.cpp src/NESMemory.cpp src/NESPPU.cpp
-        src/NESAPU.cpp src/ROMLoader.cpp
+        src/NESCPU.cpp src/NESMemory.cpp
+        src/NESPPU.cpp src/NESAPU.cpp
 
         include/NESCPU.h include/NESMemory.h include/NESPPU.h
-        include/NESAPU.h include/ROMLoader.h src/ServiceSDL.cpp
-        include/ServiceSDL.h src/NESBinary.cpp include/NESBinary.h
-        src/BitOperations.cpp include/BitOperations.h src/Timer.cpp include/Timer.h src/NESConsole.cpp include/NESConsole.h)
+        include/NESAPU.h src/ServiceSDL.cpp include/ServiceSDL.h
+        src/NESBinary.cpp include/NESBinary.h
+        src/BitOperations.cpp include/BitOperations.h
+        src/Timer.cpp include/Timer.h
+        src/NESConsole.cpp include/NESConsole.h)
 target_include_directories(Cams_NES_Emulator PRIVATE include external)
 target_link_libraries(Cams_NES_Emulator PRIVATE
         ../external/sdl/lib/static/SDL2-staticd

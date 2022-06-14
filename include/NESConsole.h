@@ -13,9 +13,14 @@ class NESConsole
     NESCPU cpu;
     NESPPU ppu;
     NESMemory memory;
-    NESBinary cartridge;
+    NESBinary rom;
     ServiceSDL serviceSDL;
+    bool initSuccess;
 public:
     NESConsole();
+    bool Initialized() const;
     void PowerOn();
+    void PowerOff();
+    void LoadROM();
+    void UnloadROM();
 };
