@@ -3,7 +3,17 @@
 
 NESCPU::NESCPU()
 {
-
+    PC = {};
+    SP = {};
+    P = {};
+    A = {};
+    X = {};
+    Y = {};
+    targetClockRate = 1789773;
+    refreshRate = 60;
+    cyclesPerInterval = targetClockRate / refreshRate;
+    cyclesThisInterval = 0;
+    totalCycles = 0;
 }
 
 uint16_t NESCPU::GetPC()

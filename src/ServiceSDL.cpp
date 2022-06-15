@@ -22,7 +22,7 @@ const std::unique_ptr<SDL_Renderer, SDLDestroyRendererType> &ServiceSDL::GetRend
 
 bool ServiceSDL::SDLInit()
 {
-    return SDL_Init(SDL_INIT_VIDEO) == 0;
+    return SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_EVENTS) == 0;
 }
 
 bool ServiceSDL::SDLInitWindow()

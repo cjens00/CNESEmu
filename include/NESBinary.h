@@ -1,5 +1,6 @@
 #pragma once
 
+#include <bitset>
 #include <cstdint>
 #include <string>
 #include <iostream>
@@ -37,16 +38,22 @@ class NESBinary
     /// <br>9: Flags 9 - TV system (rarely used extension)
     /// <br>10: Flags 10 - TV system, PRG-RAM presence (unofficial, rarely used extension)
     /// <br>11-15: Unused padding (should be filled with zero, but some rippers put their name across bytes 7-15)
-    unsigned char *header; // 16 bytes
-    unsigned char *trainer; // 0-512 bytes
-    unsigned char *PRGROM; // 16384*x bytes
-    unsigned int szPRGROM;
-    unsigned char *CHRROM; // 8192*y bytes
-    unsigned int szCHRROM;
-    unsigned char *playChoiceINSTROM; // 0 || 8192 bytes
-    unsigned char *playChoicePROM; // 16 bytes Data, 16 bytes CounterOut
-    unsigned char *optionalTitle; // 0-128 bytes
-    struct HeaderFlags headerFlags;
+    char8_t *header; // 16 bytes
+    char8_t *trainer; // 0-512 bytes
+    uint32_t szPRGROM;
+    uint32_t szCHRROM;
+    char8_t *PRGROM; // 16384*x bytes
+    char8_t *CHRROM; // 8192*y bytes
+    char8_t *playChoiceINSTROM; // 0 || 8192 bytes
+    char8_t *playChoicePROM; // 16 bytes Data, 16 bytes CounterOut
+    char8_t *optionalTitle; // 0-128 bytes
+
+    /// ROM Option Flags
+    bool bMirrorVertical;
+    bool bHasPersistentMemory;
+    bool bHasTrainer;
+    bool bUsingCHRRAM;
+    /// End Flags
 public:
     NESBinary();
     explicit NESBinary(const std::string &pathToBinary);

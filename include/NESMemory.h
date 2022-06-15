@@ -19,12 +19,13 @@
 /// ==================================================================================
 #pragma once
 #include <cstdint>
+#include <memory>
 
 class NESMemory
 {
-    uint8_t *data;
+    std::unique_ptr<char8_t*> data;
 public:
     NESMemory();
     ~NESMemory();
-    void SetMemory(uint16_t address, uint8_t value);
+    void SetMemory(uint16_t address, char8_t value);
 };

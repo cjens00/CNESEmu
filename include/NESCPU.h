@@ -50,6 +50,11 @@ class NESCPU
     uint8_t A;
     uint8_t X;
     uint8_t Y;
+    uint32_t cyclesThisInterval;
+    uint64_t totalCycles;
+    uint8_t refreshRate;
+    uint32_t targetClockRate;
+    uint32_t cyclesPerInterval;
 public:
     enum memoryAccessMode
     {

@@ -1,12 +1,12 @@
 #include "NESConsole.h"
 
-NESConsole::NESConsole()
+NESConsole::NESConsole() : memory()
 {
     apu = NESAPU();
     cpu = NESCPU();
-    memory = NESMemory();
     ppu = NESPPU();
     rom = NESBinary("../test/smb-test.nes");
+    rom.Read(); // debug
     initSuccess = serviceSDL.InitializeSDL();
 }
 
