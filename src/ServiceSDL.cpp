@@ -1,7 +1,10 @@
 #include "ServiceSDL.h"
 
 ServiceSDL::ServiceSDL() : window(nullptr, nullptr), renderer(nullptr, nullptr)
-{}
+{
+    this->bShouldQuit = false;
+    this->cbOnUpdate = []{;};
+}
 
 ServiceSDL::~ServiceSDL()
 { SDL_Quit(); }
@@ -68,4 +71,21 @@ SDLTexturePtrUnq ServiceSDL::SDLCreateTextureFromSurface(SDLSurfacePtrUnq surfac
         return {nullptr, nullptr};
     }
     return {temp, SDL_DestroyTexture};
+}
+
+void ServiceSDL::SetOnUpdateCallback(std::function<void(void)> &onUpdateCallback)
+{
+    this->cbOnUpdate = onUpdateCallback;
+}
+
+void ServiceSDL::SetOnUpdateCallback(std::function<void(void)> &&onUpdateCallback)
+{
+    this->cbOnUpdate = std::move(onUpdateCallback);
+}
+
+void ServiceSDL::OnUpdateFrame()
+{
+    // Poll SDL events
+    // NESConsole callback:
+    cbOnUpdate();
 }

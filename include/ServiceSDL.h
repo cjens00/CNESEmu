@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <functional>
 #include <memory>
 #include <sdl/include/SDL.h>
 
@@ -25,8 +26,11 @@ class ServiceSDL
 {
     SDLWindowPtrUnq window;
     SDLRendererPtrUnq renderer;
+    std::function<void(void)> cbOnUpdate;
+    bool bShouldQuit;
 public:
     ServiceSDL();
+
     ~ServiceSDL();
 
     bool InitializeSDL();
@@ -35,8 +39,14 @@ public:
 
     const SDLRendererPtrUnq &GetRenderer() const;
 
+    void SetOnUpdateCallback(std::function<void(void)> &onUpdateCallback);
+    void SetOnUpdateCallback(std::function<void(void)> &&onUpdateCallback);
+
 private:
     bool SDLInit();
+
+    /// Called with each SDL framebuffer swap
+    void OnUpdateFrame();
 
     bool SDLInitWindow();
 

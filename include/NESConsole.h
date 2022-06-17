@@ -15,12 +15,12 @@ class NESConsole
     NESMemory memory;
     NESBinary rom;
     ServiceSDL serviceSDL;
-    bool initSuccess;
 public:
     NESConsole();
-    bool Initialized() const;
-    void PowerOn();
-    void PowerOff();
-    void LoadROM();
+    void LoadROM(const std::string &filePath);
     void UnloadROM();
+    void Start();
+    void Stop();
+    void Pause();
+    void Quit();
 };

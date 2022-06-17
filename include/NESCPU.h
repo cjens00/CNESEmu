@@ -35,12 +35,37 @@
 /// accumulator, they have limited addressing modes themselves when loading and saving.
 
 #pragma once
+
 #include <cstdint>
 
 /// Accumulator:    Intermediate value register for ALU operations
 /// Index Register: Contents added to or subtracted from an immediate address
 ///                 to form the effective address of the actual data (operand)
 /// Status Register: Describes the outcome of an operation using bit flags
+
+/// 6502 Instructions:
+/// ADC AND ASL BCC BCS BEQ BIT BMI BNE BPL BRK BVC BVS CLC
+/// CLD CLI CLV CMP CPX CPY DEC DEX DEY EOR INC INX INY JMP
+/// JSR LDA LDX LDY LSR NOP ORA PHA PHP PLA PLP ROL ROR RTI
+/// RTS SBC SEC SED SEI STA STX STY TAX TAY TSX TXA TXS TYA
+
+enum MemoryAccessMode
+{
+    Implicit = 0,
+    Accumulator = 1,
+    Immediate = 2,
+    ZeroPage = 3,
+    Absolute = 4,
+    Relative = 5,
+    Indirect = 6,
+
+    ZeroPageIndexedX = 7,
+    ZeroPageIndexedY = 8,
+    AbsoluteIndexedX = 9,
+    AbsoluteIndexedY = 10,
+    IndirectIndexedX = 11,
+    IndirectIndexedY = 12
+};
 
 class NESCPU
 {
@@ -56,71 +81,6 @@ class NESCPU
     uint32_t targetClockRate;
     uint32_t cyclesPerInterval;
 public:
-    enum memoryAccessMode
-    {
-        Implicit = 0,
-        Accumulator = 1,
-        Immediate = 2,
-        ZeroPage = 3,
-        Absolute = 4,
-        Relative = 5,
-        Indirect = 6,
-
-        ZeroPageIndexedX = 7,
-        ZeroPageIndexedY = 8,
-        AbsoluteIndexedX = 9,
-        AbsoluteIndexedY = 10,
-        IndirectIndexedX = 11,
-        IndirectIndexedY = 12
-    };
 public:
     NESCPU();
-
-    void DEC();
-
-    void DEX();
-
-    void DEY();
-
-    void JMP();
-
-    void LDA();
-
-    void LDX();
-
-    void LDY();
-
-    void ADC();
-
-    void SBC();
-
-    /// ============
-
-    uint16_t GetPC();
-
-    uint8_t GetSP();
-
-    uint8_t GetP();
-
-    uint8_t GetA();
-
-    uint8_t GetX();
-
-    uint8_t GetY();
-
-    void SetPC(uint16_t value);
-
-    void SetSP(uint8_t value);
-
-    void SetP(uint8_t value);
-
-    void SetA(uint8_t value);
-
-    void SetX(uint8_t value);
-
-    void SetY(uint8_t value);
-
-    /// ============
-    void BRK();
-    /// ============
 };
