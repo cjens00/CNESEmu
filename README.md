@@ -8,3 +8,5 @@ Thanks to:<br>
 
 You may do whatever you want with the code, but if you feel so inclined, <br>
 a mention and link to my GitHub page works fine.
+
+Note: Emulator still under development, not-yet-functional.
